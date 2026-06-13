@@ -42,8 +42,9 @@ def markdown_to_json_backup(
         except Exception as e:
             print(f"✗ Error processing {md_file.name}: {e}")
 
-    # Sort by filename
-    posts.sort(key=lambda x: x["filename"])
+    # Sort by filename, assumes using leading date in filename
+    # Sorts from newest to oldest
+    posts.sort(key=lambda x: x["filename"], reverse=True)
 
     # Write to JSON
     with open(output_file, 'w', encoding='utf-8') as f:
